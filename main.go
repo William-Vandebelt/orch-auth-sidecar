@@ -3,19 +3,18 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 	"os"
 
 	_ "github.com/quasilyte/go-ruleguard/dsl"
-	kit_utils "github.com/sailsforce/gomicro-kit/utils"
+	// kit_utils "github.com/sailsforce/gomicro-kit/utils"
 	jose "gopkg.in/square/go-jose.v2/jwt"
 )
 
-func init() {
-	if err := kit_utils.InitEnv(); err != nil {
-		log.Printf("error loading .env file: %v\n", err)
-	}
-}
+// func init() {
+// if err := kit_utils.InitEnv(); err != nil {
+// log.Printf("error loading .env file: %v\n", err)
+// }
+// }
 
 type JwtClaims struct {
 	IssuerId          string            `json:"iss"`
@@ -55,7 +54,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
-	log.Printf("claims: %+v\n", claims)
+	fmt.Fprintf(os.Stdout, "claims: %+v\n", claims)
 
 	os.Exit(0)
 }
