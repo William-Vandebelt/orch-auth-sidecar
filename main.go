@@ -39,6 +39,7 @@ type OrchClaims struct {
 func main() {
 	// pass token using the '-token={jwt token} flag'
 	tokenPtr := flag.String("token", "", "jwt token")
+	keyPtr := flag.String("key", "", "private key for jwt")
 	flag.Parse()
 
 	// parse token
@@ -50,7 +51,7 @@ func main() {
 
 	// pull out claims
 	claims := JwtClaims{}
-	if err := jwtToken.UnsafeClaimsWithoutVerification(&claims); err != nil {
+	if err := jwtToken.Claims(keyPtr, &claims); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
 		os.Exit(1)
 	}
