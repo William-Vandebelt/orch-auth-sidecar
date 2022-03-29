@@ -53,7 +53,7 @@ func main() {
 	claims := JwtClaims{}
 	if err := jwtToken.Claims([]byte(*keyPtr), &claims); err != nil {
 		fmt.Fprintf(os.Stderr, "error: %v\n", err)
-		os.Exit(1)
+		os.Exit(2)
 	}
 	fmt.Fprintf(os.Stdout, "claims: %+v\n", claims)
 
